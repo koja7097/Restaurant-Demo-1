@@ -4,103 +4,121 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tasty Kitchen</title>
+<title>UrbanBite | Premium Restaurant</title>
 
 <link rel="stylesheet" href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 </head>
 
 <body>
 
 <nav>
-<h2 class="logo">TastyKitchen</h2>
+<h2 class="logo">UrbanBite</h2>
 
-<ul>
+<div class="hamburger" onclick="toggleMenu()">
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<ul id="nav-links">
 <li><a href="#home">Home</a></li>
 <li><a href="#menu">Menu</a></li>
+<li><a href="#gallery">Gallery</a></li>
 <li><a href="#about">About</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
-
 </nav>
 
+<!-- HERO -->
 <section class="hero" id="home">
+<canvas id="bg"></canvas>
 
-<div class="hero-text">
-<h1>Fresh Delicious Meals Delivered Fast</h1>
-
-<p>Enjoy mouth-watering dishes prepared with love and fresh ingredients.</p>
-
-<a href="#menu" class="btn">Explore Menu</a>
+<div class="hero-content">
+<h1>Experience Fine Dining Like Never Before</h1>
+<p>Premium meals crafted with passion, delivered fast to your door.</p>
+<a href="#menu" class="btn">View Menu</a>
 </div>
-
 </section>
 
-
+<!-- MENU -->
 <section class="menu" id="menu">
+<h2>Our Specials</h2>
 
-<h2>Popular Dishes</h2>
-
-<div class="menu-container">
+<div class="menu-grid">
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1604908176997-431f6c56f3c9">
 <h3>Vegetable Soup</h3>
-<p>Rich and healthy Nigerian vegetable soup.</p>
+<p>Rich, healthy and traditional.</p>
 </div>
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092">
 <h3>Jollof Rice</h3>
-<p>Smoky party jollof served with chicken.</p>
+<p>Smoky Nigerian classic.</p>
 </div>
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1">
 <h3>Grilled Chicken</h3>
-<p>Juicy grilled chicken with special spices.</p>
+<p>Perfectly seasoned & juicy.</p>
 </div>
 
 </div>
-
 </section>
 
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+<h2>Our Kitchen Moments</h2>
 
+<div class="gallery-grid">
+<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c">
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836">
+<img src="https://images.unsplash.com/photo-1551218808-94e220e084d2">
+<img src="https://images.unsplash.com/photo-1529042410759-befb1204b468">
+</div>
+</section>
+
+<!-- ABOUT -->
 <section class="about" id="about">
-
-<div class="about-text">
-
-<h2>About Us</h2>
-
+<h2>About UrbanBite</h2>
 <p>
-We prepare meals with passion and quality ingredients to give customers an unforgettable food experience.
+We deliver premium meals with unmatched taste and quality. Every dish is crafted to give you a memorable dining experience.
 </p>
+</section>
 
+<!-- TESTIMONIAL -->
+<section class="testimonials">
+<h2>Customer Reviews</h2>
+
+<div class="review">
+<p>"Absolutely amazing food!"</p>
+<h4>- Michael</h4>
 </div>
 
+<div class="review">
+<p>"Fast delivery and top service."</p>
+<h4>- Anita</h4>
+</div>
 </section>
 
-
-<section class="contact" id="contact">
-
-<h2>Order Your Meal Today</h2>
-
-<p>Send us a message and get your meal delivered quickly.</p>
-
-<button onclick="order()">Order on WhatsApp</button>
-
+<!-- CTA -->
+<section class="cta" id="contact">
+<h2>Ready to Order?</h2>
+<p>Click below to chat with us instantly on WhatsApp</p>
+<button onclick="order()">Order Now</button>
 </section>
 
+<a href="https://wa.me/234XXXXXXXXXX" class="whatsapp">💬</a>
 
 <footer>
-
-<p>© 2026 TastyKitchen. All rights reserved.</p>
-
+<p>© 2026 UrbanBite. All rights reserved.</p>
 </footer>
 
 <script src="main.js"></script>
-
 </body>
 </html>
