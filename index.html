@@ -3,92 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Elite Bites & Bar </title>
+<title>Elite Bites & Bar</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Poppins;background:#0a0a0a;color:#fff;overflow-x:hidden}
-h1,h2{font-family:'Playfair Display'}
-
-canvas{position:fixed;top:0;left:0;z-index:-1}
-
-header{position:fixed;width:100%;top:0;display:flex;justify-content:space-between;padding:20px 40px;background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);z-index:1000}
-.logo{color:#d4af37;font-weight:700}
-nav ul{display:flex;gap:20px;list-style:none}
-nav a{color:#fff;text-decoration:none}
-.hamburger{display:none;flex-direction:column}
-.hamburger span{width:25px;height:3px;background:#fff;margin:4px 0}
-@media(max-width:768px){nav ul{display:none;flex-direction:column;position:absolute;right:20px;top:70px;background:#111;padding:20px}nav ul.active{display:flex}.hamburger{display:flex}}
-
-.hero{height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9))}
-.hero h1{font-size:3rem}
-.hero p{margin:20px 0}
-.btn{padding:12px 25px;border-radius:30px;background:#d4af37;color:#000;border:none;cursor:pointer}
-
-section{padding:100px 30px}
-
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-.card{background:#111;padding:25px;border-radius:10px;text-align:center;transition:.3s}
-.card:hover{transform:translateY(-10px) scale(1.03)}
-.card i{color:#d4af37;font-size:1.5rem;margin-bottom:10px}
-
-.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-.menu-item{background:#111;padding:20px;border-radius:10px;transition:.3s}
-.menu-item:hover{transform:scale(1.05)}
-
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}
-.gallery img{width:100%;border-radius:10px;transition:.3s}
-.gallery img:hover{transform:scale(1.05)}
-
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));text-align:center}
-.stat{font-size:2rem;color:#d4af37}
-
-.testimonials{display:flex;overflow:auto;gap:20px}
-.testimonial{min-width:300px;background:#111;padding:20px;border-radius:10px}
-
-form{display:flex;flex-direction:column;gap:10px;max-width:400px;margin:auto}
-input,textarea{padding:10px;border:none;border-radius:5px}
-
-.socials{display:flex;justify-content:center;gap:15px;margin-top:20px}
-.socials a{color:#d4af37;font-size:20px}
-
-.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;padding:15px;border-radius:50%}
-#topBtn{position:fixed;bottom:80px;right:20px;background:#d4af37;padding:10px;border-radius:50%;display:none}
-
-.modal{display:none;position:fixed;width:100%;height:100%;top:0;background:rgba(0,0,0,.8);justify-content:center;align-items:center}
-.modal-content{background:#111;padding:30px;border-radius:10px}
-
-footer{text-align:center;padding:20px;background:#111}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+  <div id="pageTransition"></div>
+    <!-- SKELETON LOADER -->
+<div id="loader">
+  <div class="skeleton-header"></div>
+
+  <div class="skeleton-hero"></div>
+
+  <div class="skeleton-grid">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <div class="skeleton-grid">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+<div id="progressBar"></div>
+
+<!-- SIDEBAR NAV -->
+<div id="sidebar">
+<a href="#"><i class="fas fa-home"></i></a>
+<a href="#services"><i class="fas fa-utensils"></i></a>
+<a href="#menu-section"><i class="fas fa-list"></i></a>
+<a href="#contact"><i class="fas fa-phone"></i></a>
+</div>
 
 <header>
 <div class="logo">Elite Bites</div>
+
 <nav>
 <ul id="menu">
 <li><a href="#">Home</a></li>
 <li><a href="#services">Services</a></li>
-<li><a href="#menu">Menu</a></li>
+<li><a href="#menu-section">Menu</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
 </nav>
-<div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+
+<div class="hamburger" onclick="toggleMenu()">
+<span></span><span></span><span></span>
+</div>
+
+<button class="mode-toggle" onclick="toggleMode()">🌙</button>
 </header>
 
+<!-- HERO VIDEO -->
 <section class="hero">
-<div data-aos="fade-up">
+<video autoplay muted loop id="bgVideo">
+<source src="Images/6011721_Person_People_3840x2160.mp4" type="video/mp4">
+</video>
+
+<div class="hero-content" data-aos="fade-up">
 <h1>Luxury Dining Experience</h1>
 <p>Restaurant • Bar • Lounge</p>
 <button class="btn" onclick="openModal()">Book Now</button>
 </div>
 </section>
 
+<!-- SERVICES -->
 <section id="services">
 <h2>Services</h2>
 <div class="services-grid">
@@ -98,36 +85,107 @@ footer{text-align:center;padding:20px;background:#111}
 </div>
 </section>
 
-<section id="menu">
-<h2>Menu</h2>
-<div class="menu-grid">
-<div class="menu-item">Steak - ₦10,000</div>
-<div class="menu-item">Cocktail - ₦5,000</div>
-<div class="menu-item">Seafood - ₦12,000</div>
-</div>
+<section id="about">
+<h2>Our Story</h2>
+<p>
+Elite Bites & Bar is where luxury dining meets unforgettable nightlife.
+From handcrafted meals to signature cocktails, we create an experience that blends taste, ambiance, and class.
+</p>
 </section>
 
+<!-- MENU -->
+<section id="menu-section">
+<h2>Menu</h2>
+
+
+<div class="menu-filters">
+<button onclick="filterMenu('all')">All</button>
+<button onclick="filterMenu('food')">Food</button>
+<button onclick="filterMenu('drink')">Drinks</button>
+<button onclick="filterMenu('dessert')">Desserts</button>
+</div>
+
+<div class="menu-grid">
+<div class="menu-item food"><img src="./Images/anna-pelzer-IGfIGP5ONV0-unsplash.jpg"><p>Steak - ₦10,000</p></div>
+<div class="menu-item food"><img src="Images/toa-heftiba-Cf_Df-Zl8iw-unsplash.jpg"><p>Vegetables - ₦20,000</p></div>
+<div class="menu-item drink"><img src="Images/ivan-torres-MQUqbmszGGM-unsplash.jpg"><p>Cocktail - ₦5,000</p></div>
+<div class="menu-item food"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836"><p>Seafood - ₦12,000</p></div>
+<div class="menu-item dessert"><img src="Images/kelvin-t-AcA8moIiD3g-unsplash.jpg"><p>Cake - ₦4,000</p></div>
+</div>
+<button class="btn" onclick="openMenu()">View Full Menu</button>
+</section>
+
+<!-- MENU MODAL -->
+<div id="menuModal" class="modal">
+<div class="modal-content">
+<h2>Full Menu</h2>
+<p>Steak • Seafood • Cocktails • Desserts</p>
+<button class="btn" onclick="closeMenu()">Close</button>
+</div>
+</div>
+
+<section id="stats">
+  <h2>Our Impact</h2>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat" data-count="900">0</div>
+      <p>Happy Clients</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat" data-count="200">0</div>
+      <p>Events Hosted</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat" data-count="150">0</div>
+      <p>Menu Items</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY SLIDER -->
 <section>
 <h2>Gallery</h2>
-<div class="gallery">
+
+<div class="gallery-slider">
+<div class="slides" id="slides">
 <img src="https://images.unsplash.com/photo-1544025162-d76694265947">
-<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836">
+<img src="Images/john-mcarthur-5_fNkrkuAkU-unsplash.jpg">
+<img src="Images/reshu-drolia-uutxmtDithE-unsplash.jpg">
+</div>
+
+<button class="prev" onclick="moveSlide(-1)">❮</button>
+<button class="next" onclick="moveSlide(1)">❯</button>
 </div>
 </section>
 
-<section class="stats">
-<div><div class="stat" data-count="900">0</div><p>Clients</p></div>
-<div><div class="stat" data-count="200">0</div><p>Events</p></div>
-</section>
+<div id="lightbox">
+<img id="lightboxImg">
+</div>
 
+<!-- REVIEWS -->
 <section>
-<h2>Testimonials</h2>
-<div class="testimonials">
-<div class="testimonial">Amazing experience!</div>
-<div class="testimonial">Loved the vibe!</div>
+<h2>Customer Reviews</h2>
+
+<div class="review">
+⭐⭐⭐⭐⭐  
+<p>Amazing food and ambiance!</p>
 </div>
+
+<div class="review">
+⭐⭐⭐⭐⭐  
+<p>Best cocktails in town 🍹</p>
+</div>
+
 </section>
 
+<!-- AI CHAT -->
+<div id="chatbot">
+<div id="chatHeader">Chat with us 🍽️</div>
+<div id="chatBody"></div>
+<input id="chatInput" placeholder="Ask something..." onkeypress="handleChat(event)">
+</div>
+
+<!-- CONTACT -->
 <section id="contact">
 <h2>Contact</h2>
 <form>
@@ -136,63 +194,47 @@ footer{text-align:center;padding:20px;background:#111}
 <textarea placeholder="Message"></textarea>
 <button class="btn">Send</button>
 </form>
-<div class="socials">
-<a href="#"><i class="fab fa-instagram"></i></a>
-<a href="#"><i class="fab fa-facebook"></i></a>
-</div>
 </section>
 
 <div id="topBtn" onclick="scrollTopPage()">↑</div>
-<a href="https://wa.me/2340000000000" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
 
-<div class="modal" id="bookingModal">
-<div class="modal-content">
-<h3>Book Table</h3>
-<input placeholder="Date">
-<input placeholder="Time">
-<input placeholder="Guests">
-<button class="btn">Confirm</button>
+<!-- PRICING -->
+<section>
+<h2>Reservations</h2>
+
+<div class="pricing">
+<div class="price-card">
+<h3>Standard</h3>
+<p>₦10,000</p>
+</div>
+
+<div class="price-card">
+<h3>VIP</h3>
+<p>₦25,000</p>
+</div>
+
+<div class="price-card">
+<h3>Event</h3>
+<p>₦100,000+</p>
 </div>
 </div>
+
+</section>
+
+<section>
+<h2>Need a Website Like This?</h2>
+<p>I build modern websites for restaurants, lounges and businesses.</p>
+<button class="btn" onclick="openModal()">Get Yours</button>
+</section>
+
+<button id="stickyCTA" onclick="openModal()">Reserve Now</button>
+
 
 <footer>© 2026 Elite Bites</footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>
-AOS.init();
-
-function toggleMenu(){document.getElementById('menu').classList.toggle('active')}
-function openModal(){document.getElementById('bookingModal').style.display='flex'}
-window.onclick=e=>{if(e.target.id==='bookingModal')e.target.style.display='none'}
-
-window.onscroll=()=>{document.getElementById('topBtn').style.display=window.scrollY>300?'block':'none'}
-function scrollTopPage(){window.scrollTo({top:0,behavior:'smooth'})}
-
-const counters=document.querySelectorAll('.stat');
-counters.forEach(c=>{const update=()=>{let t=+c.dataset.count;let n=+c.innerText;let i=t/100;if(n<t){c.innerText=Math.ceil(n+i);setTimeout(update,20)}else c.innerText=t};update()});
-
-// THREE JS BACKGROUND
-const scene=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
-const renderer=new THREE.WebGLRenderer({alpha:true});
-renderer.setSize(window.innerWidth,window.innerHeight);
-document.body.appendChild(renderer.domElement);
-
-const geometry=new THREE.TorusKnotGeometry(10,3,100,16);
-const material=new THREE.MeshBasicMaterial({color:0xd4af37,wireframe:true});
-const mesh=new THREE.Mesh(geometry,material);
-scene.add(mesh);
-
-camera.position.z=30;
-
-function animate(){
-requestAnimationFrame(animate);
-mesh.rotation.x+=0.005;
-mesh.rotation.y+=0.005;
-renderer.render(scene,camera);
-}
-animate();
-</script>
+<script src="main.js"></script>
 
 </body>
 </html>
