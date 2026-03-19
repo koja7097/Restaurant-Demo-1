@@ -3,122 +3,196 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elite Bites & Bar </title>
 
-<title>UrbanBite | Premium Restaurant</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-</head>
 
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Poppins;background:#0a0a0a;color:#fff;overflow-x:hidden}
+h1,h2{font-family:'Playfair Display'}
+
+canvas{position:fixed;top:0;left:0;z-index:-1}
+
+header{position:fixed;width:100%;top:0;display:flex;justify-content:space-between;padding:20px 40px;background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);z-index:1000}
+.logo{color:#d4af37;font-weight:700}
+nav ul{display:flex;gap:20px;list-style:none}
+nav a{color:#fff;text-decoration:none}
+.hamburger{display:none;flex-direction:column}
+.hamburger span{width:25px;height:3px;background:#fff;margin:4px 0}
+@media(max-width:768px){nav ul{display:none;flex-direction:column;position:absolute;right:20px;top:70px;background:#111;padding:20px}nav ul.active{display:flex}.hamburger{display:flex}}
+
+.hero{height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9))}
+.hero h1{font-size:3rem}
+.hero p{margin:20px 0}
+.btn{padding:12px 25px;border-radius:30px;background:#d4af37;color:#000;border:none;cursor:pointer}
+
+section{padding:100px 30px}
+
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.card{background:#111;padding:25px;border-radius:10px;text-align:center;transition:.3s}
+.card:hover{transform:translateY(-10px) scale(1.03)}
+.card i{color:#d4af37;font-size:1.5rem;margin-bottom:10px}
+
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.menu-item{background:#111;padding:20px;border-radius:10px;transition:.3s}
+.menu-item:hover{transform:scale(1.05)}
+
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}
+.gallery img{width:100%;border-radius:10px;transition:.3s}
+.gallery img:hover{transform:scale(1.05)}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));text-align:center}
+.stat{font-size:2rem;color:#d4af37}
+
+.testimonials{display:flex;overflow:auto;gap:20px}
+.testimonial{min-width:300px;background:#111;padding:20px;border-radius:10px}
+
+form{display:flex;flex-direction:column;gap:10px;max-width:400px;margin:auto}
+input,textarea{padding:10px;border:none;border-radius:5px}
+
+.socials{display:flex;justify-content:center;gap:15px;margin-top:20px}
+.socials a{color:#d4af37;font-size:20px}
+
+.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;padding:15px;border-radius:50%}
+#topBtn{position:fixed;bottom:80px;right:20px;background:#d4af37;padding:10px;border-radius:50%;display:none}
+
+.modal{display:none;position:fixed;width:100%;height:100%;top:0;background:rgba(0,0,0,.8);justify-content:center;align-items:center}
+.modal-content{background:#111;padding:30px;border-radius:10px}
+
+footer{text-align:center;padding:20px;background:#111}
+</style>
+</head>
 <body>
 
+<header>
+<div class="logo">Elite Bites</div>
 <nav>
-<h2 class="logo">UrbanBite</h2>
-
-<div class="hamburger" onclick="toggleMenu()">
-<span></span>
-<span></span>
-<span></span>
-</div>
-
-<ul id="nav-links">
-<li><a href="#home">Home</a></li>
+<ul id="menu">
+<li><a href="#">Home</a></li>
+<li><a href="#services">Services</a></li>
 <li><a href="#menu">Menu</a></li>
-<li><a href="#gallery">Gallery</a></li>
-<li><a href="#about">About</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
 </nav>
+<div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</header>
 
-<!-- HERO -->
-<section class="hero" id="home">
-<canvas id="bg"></canvas>
-
-<div class="hero-content">
-<h1>Experience Fine Dining Like Never Before</h1>
-<p>Premium meals crafted with passion, delivered fast to your door.</p>
-<a href="#menu" class="btn">View Menu</a>
+<section class="hero">
+<div data-aos="fade-up">
+<h1>Luxury Dining Experience</h1>
+<p>Restaurant • Bar • Lounge</p>
+<button class="btn" onclick="openModal()">Book Now</button>
 </div>
 </section>
 
-<!-- MENU -->
-<section class="menu" id="menu">
-<h2>Our Specials</h2>
+<section id="services">
+<h2>Services</h2>
+<div class="services-grid">
+<div class="card"><i class="fas fa-utensils"></i>Dining</div>
+<div class="card"><i class="fas fa-cocktail"></i>Bar</div>
+<div class="card"><i class="fas fa-music"></i>Events</div>
+</div>
+</section>
 
+<section id="menu">
+<h2>Menu</h2>
 <div class="menu-grid">
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1604908176997-431f6c56f3c9">
-<h3>Vegetable Soup</h3>
-<p>Rich, healthy and traditional.</p>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092">
-<h3>Jollof Rice</h3>
-<p>Smoky Nigerian classic.</p>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1">
-<h3>Grilled Chicken</h3>
-<p>Perfectly seasoned & juicy.</p>
-</div>
-
+<div class="menu-item">Steak - ₦10,000</div>
+<div class="menu-item">Cocktail - ₦5,000</div>
+<div class="menu-item">Seafood - ₦12,000</div>
 </div>
 </section>
 
-<!-- GALLERY -->
-<section class="gallery" id="gallery">
-<h2>Our Kitchen Moments</h2>
-
-<div class="gallery-grid">
-<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c">
+<section>
+<h2>Gallery</h2>
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1544025162-d76694265947">
 <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836">
-<img src="https://images.unsplash.com/photo-1551218808-94e220e084d2">
-<img src="https://images.unsplash.com/photo-1529042410759-befb1204b468">
 </div>
 </section>
 
-<!-- ABOUT -->
-<section class="about" id="about">
-<h2>About UrbanBite</h2>
-<p>
-We deliver premium meals with unmatched taste and quality. Every dish is crafted to give you a memorable dining experience.
-</p>
+<section class="stats">
+<div><div class="stat" data-count="900">0</div><p>Clients</p></div>
+<div><div class="stat" data-count="200">0</div><p>Events</p></div>
 </section>
 
-<!-- TESTIMONIAL -->
-<section class="testimonials">
-<h2>Customer Reviews</h2>
-
-<div class="review">
-<p>"Absolutely amazing food!"</p>
-<h4>- Michael</h4>
-</div>
-
-<div class="review">
-<p>"Fast delivery and top service."</p>
-<h4>- Anita</h4>
+<section>
+<h2>Testimonials</h2>
+<div class="testimonials">
+<div class="testimonial">Amazing experience!</div>
+<div class="testimonial">Loved the vibe!</div>
 </div>
 </section>
 
-<!-- CTA -->
-<section class="cta" id="contact">
-<h2>Ready to Order?</h2>
-<p>Click below to chat with us instantly on WhatsApp</p>
-<button onclick="order()">Order Now</button>
+<section id="contact">
+<h2>Contact</h2>
+<form>
+<input placeholder="Name">
+<input placeholder="Email">
+<textarea placeholder="Message"></textarea>
+<button class="btn">Send</button>
+</form>
+<div class="socials">
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-facebook"></i></a>
+</div>
 </section>
 
-<a href="https://wa.me/234XXXXXXXXXX" class="whatsapp">💬</a>
+<div id="topBtn" onclick="scrollTopPage()">↑</div>
+<a href="https://wa.me/2340000000000" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
 
-<footer>
-<p>© 2026 UrbanBite. All rights reserved.</p>
-</footer>
+<div class="modal" id="bookingModal">
+<div class="modal-content">
+<h3>Book Table</h3>
+<input placeholder="Date">
+<input placeholder="Time">
+<input placeholder="Guests">
+<button class="btn">Confirm</button>
+</div>
+</div>
 
-<script src="main.js"></script>
+<footer>© 2026 Elite Bites</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init();
+
+function toggleMenu(){document.getElementById('menu').classList.toggle('active')}
+function openModal(){document.getElementById('bookingModal').style.display='flex'}
+window.onclick=e=>{if(e.target.id==='bookingModal')e.target.style.display='none'}
+
+window.onscroll=()=>{document.getElementById('topBtn').style.display=window.scrollY>300?'block':'none'}
+function scrollTopPage(){window.scrollTo({top:0,behavior:'smooth'})}
+
+const counters=document.querySelectorAll('.stat');
+counters.forEach(c=>{const update=()=>{let t=+c.dataset.count;let n=+c.innerText;let i=t/100;if(n<t){c.innerText=Math.ceil(n+i);setTimeout(update,20)}else c.innerText=t};update()});
+
+// THREE JS BACKGROUND
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+const renderer=new THREE.WebGLRenderer({alpha:true});
+renderer.setSize(window.innerWidth,window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+const geometry=new THREE.TorusKnotGeometry(10,3,100,16);
+const material=new THREE.MeshBasicMaterial({color:0xd4af37,wireframe:true});
+const mesh=new THREE.Mesh(geometry,material);
+scene.add(mesh);
+
+camera.position.z=30;
+
+function animate(){
+requestAnimationFrame(animate);
+mesh.rotation.x+=0.005;
+mesh.rotation.y+=0.005;
+renderer.render(scene,camera);
+}
+animate();
+</script>
+
 </body>
 </html>
