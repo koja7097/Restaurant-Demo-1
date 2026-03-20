@@ -4,6 +4,16 @@ AOS.init();
 // DARK MODE
 function toggleMode(){
 document.body.classList.toggle('light');
+
+const icon = document.getElementById('modeIcon');
+
+if(document.body.classList.contains('light')){
+icon.classList.remove('fa-moon');
+icon.classList.add('fa-sun');
+}else{
+icon.classList.remove('fa-sun');
+icon.classList.add('fa-moon');
+}
 }
 
 // CHATBOT
@@ -49,18 +59,32 @@ window.onscroll=()=>{document.getElementById('topBtn').style.display=window.scro
 function scrollTopPage(){window.scrollTo({top:0,behavior:'smooth'})}
 
 const counters = document.querySelectorAll('.stat');
-counters.forEach(c => {
-  const update = () => {
-    let t = +c.dataset.count;
-    let n = +c.innerText;
-    let i = t / 100;
-    if (n < t) {
-      c.innerText = Math.ceil(n + i);
-      setTimeout(update, 20);
-    } else c.innerText = t;
-  };
-  update();
-});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const c = entry.target;
+
+      const update = () => {
+        let t = +c.dataset.count;
+        let n = +c.innerText;
+        let i = t / 100;
+
+        if (n < t) {
+          c.innerText = Math.ceil(n + i);
+          setTimeout(update, 20);
+        } else {
+          c.innerText = t;
+        }
+      };
+
+      update();
+      observer.unobserve(c);
+    }
+  });
+}, { threshold: 0.6 });
+
+counters.forEach(c => observer.observe(c));
 // THREE JS BACKGROUND
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
@@ -103,19 +127,39 @@ document.getElementById('menuModal').style.display='none';
 }
 
 
-setTimeout(()=>{
-const note=document.createElement('div');
-note.innerText="🔥 5 people just booked a table!";
+const messages = [
+"🔥 2 people just booked a VIP table",
+"🍷 Someone ordered cocktails",
+"🍽️ New reservation just came in",
+"⭐ A customer left a 5-star review",
+"🎉 Event booking confirmed"
+];
+
+setInterval(()=>{
+const note = document.createElement('div');
+
+note.innerText = messages[Math.floor(Math.random()*messages.length)];
+
 note.style.position='fixed';
 note.style.bottom='100px';
 note.style.right='20px';
 note.style.background='#111';
-note.style.padding='10px';
+note.style.padding='10px 15px';
 note.style.borderRadius='10px';
+note.style.fontSize='14px';
+note.style.opacity='0';
+note.style.transition='0.5s';
+
 document.body.appendChild(note);
 
-setTimeout(()=>note.remove(),4000);
-},5000);
+setTimeout(()=> note.style.opacity='1',100);
+
+setTimeout(()=>{
+note.style.opacity='0';
+setTimeout(()=>note.remove(),500);
+},4000);
+
+},8000);
 
 
 document.querySelectorAll('a[href^="#"]').forEach(link=>{
@@ -196,3 +240,71 @@ document.getElementById('lightbox').style.display='none';
 
 
 
+function filterMenu(category){
+  const items = document.querySelectorAll('.menu-item');
+
+  items.forEach(item => {
+    if(category === 'all'){
+      item.style.display = 'block';
+    } else {
+      item.style.display = item.classList.contains(category) ? 'block' : 'none';
+    }
+  });
+} 
+
+function toggleChat(){
+  const chat = document.getElementById('chatbot');
+  chat.style.display = chat.style.display === 'block' ? 'none' : 'block';
+}
+
+function handleChat(e){
+if(e.key==='Enter'){
+let input=document.getElementById('chatInput');
+let msg=input.value.toLowerCase();
+let body=document.getElementById('chatBody');
+
+body.innerHTML += `<p><b>You:</b> ${msg}</p>`;
+
+let reply = "I'm here to help 😊";
+
+if(msg.includes("menu")) reply="We serve premium meals, cocktails & desserts 🍽️";
+else if(msg.includes("price")) reply="Meals range from ₦4,000 - ₦20,000";
+else if(msg.includes("book") || msg.includes("reserve")) reply="Click 'Reserve Now' to book a table.";
+else if(msg.includes("location")) reply="We are located in the city center 📍";
+else if(msg.includes("open")) reply="We are open 10AM - 12AM daily.";
+else if(msg.includes("drink")) reply="We have cocktails, wines & premium spirits 🍸";
+
+body.innerHTML += `<p><b>Bot:</b> ${reply}</p>`;
+input.value="";
+}
+}
+
+window.addEventListener('scroll',()=>{
+let scrollTop = document.documentElement.scrollTop;
+let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+let progress = (scrollTop / height) * 100;
+
+document.getElementById('progressBar').style.width = progress + "%";
+});
+
+document.addEventListener('mousemove',(e)=>{
+const glow = document.getElementById('cursorGlow');
+glow.style.left = e.clientX + 'px';
+glow.style.top = e.clientY + 'px';
+});
+
+window.addEventListener('scroll',()=>{
+const hero = document.querySelector('.hero');
+let offset = window.scrollY;
+
+hero.style.backgroundPositionY = offset * 0.5 + "px";
+});
+
+function bookNow(){
+let message = "Hello, I’d like to reserve a table at Elite Bites.";
+let phone = "2347060497509"; // replace with real number
+
+let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+window.open(url, '_blank');
+}

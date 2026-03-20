@@ -59,7 +59,9 @@
 <span></span><span></span><span></span>
 </div>
 
-<button class="mode-toggle" onclick="toggleMode()">🌙</button>
+<button class="mode-toggle" onclick="toggleMode()">
+  <i id="modeIcon" class="fas fa-moon"></i>
+</button>
 </header>
 
 <!-- HERO VIDEO -->
@@ -71,12 +73,12 @@
 <div class="hero-content" data-aos="fade-up">
 <h1>Luxury Dining Experience</h1>
 <p>Restaurant • Bar • Lounge</p>
-<button class="btn" onclick="openModal()">Book Now</button>
+<button class="btn" onclick="bookNow()">Book Now</button>
 </div>
 </section>
 
 <!-- SERVICES -->
-<section id="services">
+<section id="services" data-aos="fade-up">
 <h2>Services</h2>
 <div class="services-grid">
 <div class="card"><i class="fas fa-utensils"></i>Dining</div>
@@ -85,7 +87,7 @@
 </div>
 </section>
 
-<section id="about">
+<section id="about" data-aos="fade-up">
 <h2>Our Story</h2>
 <p>
 Elite Bites & Bar is where luxury dining meets unforgettable nightlife.
@@ -94,7 +96,7 @@ From handcrafted meals to signature cocktails, we create an experience that blen
 </section>
 
 <!-- MENU -->
-<section id="menu-section">
+<section id="menu-section" data-aos="fade-up">
 <h2>Menu</h2>
 
 
@@ -124,7 +126,7 @@ From handcrafted meals to signature cocktails, we create an experience that blen
 </div>
 </div>
 
-<section id="stats">
+<section id="stats" data-aos="fade-up">
   <h2>Our Impact</h2>
   <div class="stats-grid">
     <div class="stat-card">
@@ -143,7 +145,7 @@ From handcrafted meals to signature cocktails, we create an experience that blen
 </section>
 
 <!-- GALLERY SLIDER -->
-<section>
+<section data-aos="fade-up">
 <h2>Gallery</h2>
 
 <div class="gallery-slider">
@@ -163,7 +165,7 @@ From handcrafted meals to signature cocktails, we create an experience that blen
 </div>
 
 <!-- REVIEWS -->
-<section>
+<section data-aos="fade-up">
 <h2>Customer Reviews</h2>
 
 <div class="review">
@@ -178,15 +180,15 @@ From handcrafted meals to signature cocktails, we create an experience that blen
 
 </section>
 
-<!-- AI CHAT -->
+<!-- AI CHAT
 <div id="chatbot">
 <div id="chatHeader">Chat with us 🍽️</div>
 <div id="chatBody"></div>
 <input id="chatInput" placeholder="Ask something..." onkeypress="handleChat(event)">
-</div>
+</div> -->
 
 <!-- CONTACT -->
-<section id="contact">
+<section id="contact" data-aos="fade-up">
 <h2>Contact</h2>
 <form>
 <input placeholder="Name">
@@ -199,7 +201,7 @@ From handcrafted meals to signature cocktails, we create an experience that blen
 <div id="topBtn" onclick="scrollTopPage()">↑</div>
 
 <!-- PRICING -->
-<section>
+<section data-aos="fade-up">
 <h2>Reservations</h2>
 
 <div class="pricing">
@@ -221,7 +223,7 @@ From handcrafted meals to signature cocktails, we create an experience that blen
 
 </section>
 
-<section>
+<section data-aos="fade-up">
 <h2>Need a Website Like This?</h2>
 <p>I build modern websites for restaurants, lounges and businesses.</p>
 <button class="btn" onclick="openModal()">Get Yours</button>
@@ -232,9 +234,17 @@ From handcrafted meals to signature cocktails, we create an experience that blen
 
 <footer>© 2026 Elite Bites</footer>
 
+<div id="chatToggle" onclick="toggleChat()">
+  <i class="fas fa-comments"></i>
+</div>
+
+<div id="cursorGlow"></div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script src="main.js"></script>
+
+
 
 </body>
 </html>
