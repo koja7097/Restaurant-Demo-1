@@ -238,6 +238,27 @@ From handcrafted meals to signature cocktails, we create an experience that blen
   <i class="fas fa-comments"></i>
 </div>
 
+<div id="chatbot">
+
+  <div id="chatHeader">
+    <span>Restaurant Support</span>
+  </div>
+
+  <div id="chatBody">
+    <div class="bot-msg">Hi 👋 Welcome! How can I help you today?</div>
+  </div>
+
+  <div id="chatInputArea">
+    <input 
+      id="chatInput" 
+      placeholder="Type a message..." 
+      onkeypress="handleChat(event)"
+    />
+    <button onclick="sendMessage()">➤</button>
+  </div>
+
+</div>
+
 <div id="cursorGlow"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>

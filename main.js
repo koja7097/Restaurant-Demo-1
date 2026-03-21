@@ -17,7 +17,7 @@ icon.classList.add('fa-moon');
 }
 
 // CHATBOT
-function handleChat(e){
+/* function handleChat(e){
 if(e.key==='Enter'){
 let input=document.getElementById('chatInput');
 let msg=input.value;
@@ -34,7 +34,7 @@ body.innerHTML += `<p><b>Bot:</b> ${reply}</p>`;
 
 input.value="";
 }
-}
+} */
 
 // SLIDER
 let index=0;
@@ -254,28 +254,58 @@ function filterMenu(category){
 
 function toggleChat(){
   const chat = document.getElementById('chatbot');
-  chat.style.display = chat.style.display === 'block' ? 'none' : 'block';
+  chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
+}
+
+function sendMessage(){
+  handleChat({key:'Enter'});
 }
 
 function handleChat(e){
-if(e.key==='Enter'){
-let input=document.getElementById('chatInput');
-let msg=input.value.toLowerCase();
-let body=document.getElementById('chatBody');
+if(e.key === 'Enter'){
 
-body.innerHTML += `<p><b>You:</b> ${msg}</p>`;
+let input = document.getElementById('chatInput');
+let msg = input.value.trim().toLowerCase();
+let body = document.getElementById('chatBody');
 
-let reply = "I'm here to help 😊";
+if(msg === "") return;
 
-if(msg.includes("menu")) reply="We serve premium meals, cocktails & desserts 🍽️";
-else if(msg.includes("price")) reply="Meals range from ₦4,000 - ₦20,000";
-else if(msg.includes("book") || msg.includes("reserve")) reply="Click 'Reserve Now' to book a table.";
-else if(msg.includes("location")) reply="We are located in the city center 📍";
-else if(msg.includes("open")) reply="We are open 10AM - 12AM daily.";
-else if(msg.includes("drink")) reply="We have cocktails, wines & premium spirits 🍸";
-
-body.innerHTML += `<p><b>Bot:</b> ${reply}</p>`;
+// User message
+body.innerHTML += `<div class="user-msg">${msg}</div>`;
 input.value="";
+body.scrollTop = body.scrollHeight;
+
+// Typing indicator
+body.innerHTML += `
+<div class="bot-msg typing" id="typing">
+  <span></span><span></span><span></span>
+</div>`;
+body.scrollTop = body.scrollHeight;
+
+// Smart responses
+setTimeout(()=>{
+
+let reply = "I’m here to help 😊";
+
+if(msg.includes("menu")) reply="We offer a variety of premium dishes, desserts, and drinks 🍽️";
+else if(msg.includes("price")) reply="Our meals range from ₦4,000 to ₦20,000 depending on your choice 💰";
+else if(msg.includes("book") || msg.includes("reserve")) reply="You can easily reserve a table using the 'Reserve Now' button.";
+else if(msg.includes("location")) reply="We’re located in the city center 📍 Would you like directions?";
+else if(msg.includes("open") || msg.includes("time")) reply="We’re open daily from 10AM to 12AM ⏰";
+else if(msg.includes("drink")) reply="We serve cocktails, wines, and premium spirits 🍸";
+else if(msg.includes("hello") || msg.includes("hi")) reply="Hello 👋 Great to have you here!";
+else if(msg.includes("best")) reply="Our chef’s specials are highly recommended 🔥 Would you like to see them?";
+else if(msg.includes("delivery")) reply="Yes, we offer delivery 🚚. Would you like to place an order?";
+
+// Remove typing
+document.getElementById("typing").remove();
+
+// Bot reply
+body.innerHTML += `<div class="bot-msg">${reply}</div>`;
+body.scrollTop = body.scrollHeight;
+
+}, 800);
+
 }
 }
 
